@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PAUSA — Café & Co-work · GenZ Creative Studio</title>
+<meta name="description" content="Carrusel de marca de 4 posts para una cafetería-brunch con co-working: concepto, inspiración y experiencia. Pieza de portafolio de GenZ Creative Studio.">
+<meta name="theme-color" content="#08080c">
+<link rel="canonical" href="https://genz-creative-studio.vercel.app/pausa.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2308080c'/%3E%3Ctext x='16' y='23' font-family='Arial,Helvetica,sans-serif' font-size='17' font-weight='bold' fill='%23c8ff00' text-anchor='middle'%3EGZ%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://genz-creative-studio.vercel.app/pausa.html">
+<meta property="og:title" content="PAUSA — Café & Co-work · GenZ Creative Studio">
+<meta property="og:description" content="Carrusel de marca de 4 posts para una cafetería-brunch con co-working: concepto, inspiración y experiencia. Pieza de portafolio de GenZ Creative Studio.">
+<meta property="og:image" content="https://genz-creative-studio.vercel.app/og-pausa.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=DM+Sans:opsz,wght@9..40,300..600&display=swap">
+
+<style>
+/* reset base */
+html, body { margin: 0; }
+img, video { max-width: 100%; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+
+:root {
+  /* page chrome — follows viewer theme */
+  --page-bg: #f2efe9;
+  --page-fg: #3a3028;
+  --page-muted: #8a7f73;
+  --page-card: #ffffff;
+  --page-line: rgba(58,48,40,0.11);
+
+  /* PAUSA brand — fixed in both themes, these ARE the deliverable */
+  --cream: #faf6f0;
+  --terracotta: #c4703f;
+  --olive: #6b7355;
+  --ink: #3a3028;
+  --ink-soft: #7d7064;
+
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --page-bg: #15130f;
+    --page-fg: #efe9e0;
+    --page-muted: #9b9086;
+    --page-card: #201c17;
+    --page-line: rgba(239,233,224,0.11);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --page-bg: #15130f;
+  --page-fg: #efe9e0;
+  --page-muted: #9b9086;
+  --page-card: #201c17;
+  --page-line: rgba(239,233,224,0.11);
+  color-scheme: dark;
+}
+
+* { margin: 0; box-sizing: border-box; }
+img { max-width: 100%; display: block; }
+body {
+  background: var(--page-bg);
+  color: var(--page-fg);
+  font-family: var(--sans);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── volver ── */
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 2rem;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .3px;
+  color: var(--page-muted);
+  text-decoration: none;
+  border: 1px solid var(--page-line);
+  border-radius: 100px;
+  padding: 7px 16px;
+  transition: color .2s, border-color .2s;
+}
+.back:hover { color: var(--terracotta); border-color: var(--terracotta); }
+
+/* ── header ── */
+.head { text-align: center; padding: 1.5rem 0 1.5rem; max-width: 440px; }
+.head .kicker {
+  font-size: 10px; font-weight: 500; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--page-muted); margin-bottom: 8px;
+}
+.head h1 { font-family: var(--serif); font-size: 1.35rem; font-weight: 500; letter-spacing: -0.2px; }
+.head p { font-size: 12.5px; color: var(--page-muted); margin-top: 6px; }
+
+/* ── carousel ── */
+.wrap { width: 100%; max-width: 400px; }
+.viewport {
+  overflow: hidden; border-radius: 4px; aspect-ratio: 4/5;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08), 0 16px 48px rgba(0,0,0,.14);
+}
+.track { display: flex; height: 100%; transition: transform .45s cubic-bezier(.4,0,.2,1); }
+
+/* ── slide base ── */
+.slide {
+  min-width: 100%; height: 100%;
+  background: var(--cream); color: var(--ink);
+  position: relative; display: flex; flex-direction: column; overflow: hidden;
+}
+
+/* full-bleed photo slides */
+.bleed > img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+}
+.scrim { position: absolute; inset: 0; }
+.scrim-cover {
+  background:
+    linear-gradient(180deg, rgba(40,26,16,.52) 0%, rgba(40,26,16,.30) 38%, rgba(40,26,16,.62) 100%),
+    radial-gradient(ellipse 80% 55% at 50% 50%, rgba(58,38,22,.30) 0%, transparent 75%);
+}
+.scrim-bottom {
+  background: linear-gradient(180deg, rgba(34,22,14,.08) 0%, rgba(34,22,14,.38) 42%, rgba(34,22,14,.84) 100%);
+}
+.on-photo { color: #fdfaf5; }
+.on-photo .eyebrow { color: #f0bd93; }
+.on-photo p { color: rgba(253,250,245,.86); }
+.on-photo h2 em { color: #f0bd93; }
+
+.slide-pad {
+  padding: 10.5% 9.5%;
+  flex: 1; display: flex; flex-direction: column; min-height: 0;
+  position: relative; z-index: 2;
+}
+.eyebrow {
+  font-size: 9px; font-weight: 500; letter-spacing: 3.2px;
+  text-transform: uppercase; color: var(--terracotta);
+  margin-bottom: 1rem; flex-shrink: 0;
+}
+.slide h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.45rem, 6.2vw, 1.9rem);
+  font-weight: 400; line-height: 1.13; letter-spacing: -0.4px;
+  margin-bottom: .8rem; text-wrap: balance;
+}
+.slide h2 em { font-style: italic; color: var(--terracotta); }
+.slide p { font-size: 12.5px; line-height: 1.72; color: var(--ink-soft); }
+
+.corner-mark {
+  position: absolute; bottom: 5%; left: 9.5%; right: 9.5%;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 8px; font-weight: 500; letter-spacing: 2.4px;
+  text-transform: uppercase; opacity: .6; z-index: 3;
+}
+.on-photo .corner-mark { color: rgba(253,250,245,.9); }
+
+/* ── 1 · cover ── */
+.cover-inner {
+  position: relative; z-index: 2;
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; padding: 10%;
+}
+.steam { width: 46px; height: 50px; margin-bottom: 1.1rem; }
+.steam path { fill: none; stroke: #fdfaf5; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.steam path.w { opacity: .6; stroke-width: 1.1; }
+.wordmark {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 14.5vw, 4.1rem);
+  font-weight: 300; letter-spacing: 7px; line-height: 1;
+  margin-left: 7px; /* optical centering for the tracking */
+}
+.cover-tag {
+  font-family: var(--serif); font-style: italic;
+  font-size: 13.5px; color: rgba(253,250,245,.9); margin-top: .5rem;
+}
+.rule { width: 34px; height: 1px; background: #f0bd93; margin: 1.6rem 0; }
+.cover-sub {
+  font-size: 9px; font-weight: 500; letter-spacing: 3.4px;
+  text-transform: uppercase; color: rgba(253,250,245,.82);
+}
+
+/* ── 2 · photo panel ── */
+.panel {
+  width: 100%; aspect-ratio: 16/10;
+  border-radius: 3px; overflow: hidden; flex-shrink: 0;
+  margin-bottom: 1.3rem;
+}
+.panel img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ── 4 · thumb strip ── */
+.strip { display: flex; gap: 6px; margin-bottom: 1.3rem; flex-shrink: 0; }
+.strip figure { flex: 1; min-width: 0; aspect-ratio: 1; border-radius: 3px; overflow: hidden; }
+.strip img { width: 100%; height: 100%; object-fit: cover; }
+
+.exp { display: flex; flex-direction: column; gap: .8rem; }
+.exp-row { display: flex; gap: 11px; align-items: flex-start; }
+.exp-row svg { width: 23px; height: 23px; flex-shrink: 0; margin-top: 1px; }
+.exp-row svg * { fill: none; stroke: var(--terracotta); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.exp-row svg .so { stroke: var(--olive); stroke-width: 1.3; }
+.exp-row .t { font-family: var(--serif); font-size: 13px; font-weight: 500; line-height: 1.25; margin-bottom: 1px; }
+.exp-row .d { font-size: 10.5px; line-height: 1.5; color: var(--ink-soft); }
+
+/* ── controls ── */
+.ctrl { display: flex; align-items: center; gap: 14px; margin: 1.1rem 0 .35rem; }
+.nav {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid var(--page-line); background: var(--page-card);
+  color: var(--page-fg); font-size: 15px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav:hover { border-color: var(--terracotta); color: var(--terracotta); }
+.dots { display: flex; gap: 6px; }
+.dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--page-line); cursor: pointer; transition: all .25s;
+  border: none; padding: 0;
+}
+.dot.on { background: var(--terracotta); width: 20px; border-radius: 4px; }
+.count {
+  font-size: 11px; color: var(--page-muted);
+  font-variant-numeric: tabular-nums; margin-bottom: 2.5rem;
+}
+
+</style>
+</head>
+<body>
+<a class="back" href="https://genz-creative-studio.vercel.app/">← Volver al portafolio</a>
+
+<div class="head">
+  <div class="kicker">Demo · GenZ Creative Studio</div>
+  <h1>PAUSA — Café &amp; Co-work</h1>
+  <p>Carrusel de 4 posts · Instagram 1080 × 1350</p>
+</div>
+
+<div class="wrap">
+  <div class="viewport">
+    <div class="track" id="track">
+
+      <!-- ── 1 · PORTADA ── -->
+      <div class="slide bleed on-photo">
+        <img src="img/cafe.webp" alt="Café de especialidad preparado en V60 junto a una taza con latte art">
+        <div class="scrim scrim-cover"></div>
+        <div class="cover-inner">
+          <svg class="steam" viewBox="0 0 46 50" aria-hidden="true">
+            <path class="w" d="M18 13c0-3.5 3.5-3.5 3.5-7S18 2.5 18 -1"/>
+            <path class="w" d="M27 13c0-3.5 3.5-3.5 3.5-7S27 2.5 27 -1"/>
+            <path d="M9 19h27v8.5a13.5 13.5 0 0 1-27 0z"/>
+            <path d="M36 23h3a5 5 0 0 1 0 10h-3"/>
+            <path d="M6 46h32"/>
+          </svg>
+          <div class="wordmark">PAUSA</div>
+          <div class="cover-tag">Un lugar donde el tiempo va más lento</div>
+          <div class="rule"></div>
+          <div class="cover-sub">Café de especialidad &amp; Co-work</div>
+        </div>
+      </div>
+
+      <!-- ── 2 · EL CONCEPTO ── -->
+      <div class="slide">
+        <div class="slide-pad">
+          <div class="eyebrow">01 · El concepto</div>
+          <div class="panel">
+            <img src="img/cowork.webp" alt="Mesa comunal de madera con laptop, taza y plantas junto a ventanales">
+          </div>
+          <h2>Tu oficina, tu refugio<br>y tu <em>ritual</em></h2>
+          <p>Nació de una idea simple: que un café pueda ser las tres cosas a la vez. Brunch de autor, grano de origen tostado localmente y mesas pensadas para quedarse — no para irse rápido.</p>
+        </div>
+        <div class="corner-mark" style="color:var(--ink-soft)"><span>PAUSA</span><span>01 / 04</span></div>
+      </div>
+
+      <!-- ── 3 · LA INSPIRACIÓN ── -->
+      <div class="slide bleed on-photo">
+        <img src="img/musica.webp" alt="Tocadiscos con un vinilo girando sobre un estante de madera junto a plantas">
+        <div class="scrim scrim-bottom"></div>
+        <div class="slide-pad" style="justify-content:flex-end; padding-bottom:16%">
+          <div class="eyebrow">02 · La inspiración</div>
+          <h2>Melbourne y los<br><em>kissaten</em> de Tokio</h2>
+          <p>De unas tomamos el café de origen y el brunch sin prisa. De los otros, el silencio, la madera y la música que acompaña sin interrumpir — vinilos, jazz suave, volumen justo.</p>
+        </div>
+        <div class="corner-mark"><span>PAUSA</span><span>02 / 04</span></div>
+      </div>
+
+      <!-- ── 4 · LA EXPERIENCIA ── -->
+      <div class="slide">
+        <div class="slide-pad">
+          <div class="eyebrow">03 · La experiencia</div>
+          <div class="strip">
+            <figure><img src="img/cafe.webp" alt="Preparación de café filtrado"></figure>
+            <figure><img src="img/cowork.webp" alt="Mesa de trabajo comunal"></figure>
+            <figure><img src="img/musica.webp" alt="Tocadiscos y colección de vinilos"></figure>
+          </div>
+          <h2>Lo que te espera<br>cada <em>mañana</em></h2>
+          <div class="exp">
+            <div class="exp-row">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 8h12v4.5a6 6 0 0 1-12 0z"/>
+                <path d="M16 10h1.8a2.7 2.7 0 0 1 0 5.4H16"/>
+                <path class="so" d="M9 4.5c0-1.8 1.8-1.8 1.8-3.5"/>
+                <path d="M2.5 21h15"/>
+              </svg>
+              <div>
+                <div class="t">Café de especialidad</div>
+                <div class="d">Grano de origen, tostado local, métodos filtrados.</div>
+              </div>
+            </div>
+            <div class="exp-row">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3.5" y="4.5" width="17" height="11" rx="1.8"/>
+                <path d="M1.5 18.5h21"/>
+                <path class="so" d="M17.5 10c0-2.8 1.8-4.6 3.7-5.5-.9 3.7-1.8 5.5-3.7 5.5z"/>
+              </svg>
+              <div>
+                <div class="t">Mesas para quedarse</div>
+                <div class="d">Wifi rápido, enchufe en cada puesto, luz natural.</div>
+              </div>
+            </div>
+            <div class="exp-row">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="8.4"/>
+                <circle class="so" cx="12" cy="12" r="2.6"/>
+                <circle class="so" cx="12" cy="12" r="5.5" style="opacity:.55"/>
+              </svg>
+              <div>
+                <div class="t">Vinilos y jazz suave</div>
+                <div class="d">Ambiente que acompaña, nunca interrumpe.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="corner-mark" style="color:var(--ink-soft)"><span>PAUSA</span><span>03 / 04</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="ctrl">
+    <button class="nav" id="prev" aria-label="Anterior">‹</button>
+    <div class="dots" id="dots"></div>
+    <button class="nav" id="next" aria-label="Siguiente">›</button>
+  </div>
+  <div class="count" id="count">1 / 4</div>
+</div>
+
+<script>
+(function () {
+  var track = document.getElementById('track');
+  var dotsC = document.getElementById('dots');
+  var count = document.getElementById('count');
+  var total = track.children.length;
+  var idx = 0;
+
+  for (var i = 0; i < total; i++) {
+    var b = document.createElement('button');
+    b.className = 'dot' + (i === 0 ? ' on' : '');
+    b.setAttribute('aria-label', 'Slide ' + (i + 1));
+    b.dataset.i = i;
+    b.addEventListener('click', function (e) { go(+e.currentTarget.dataset.i); });
+    dotsC.appendChild(b);
+  }
+
+  function go(i) {
+    idx = Math.max(0, Math.min(total - 1, i));
+    track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    var ds = dotsC.querySelectorAll('.dot');
+    for (var j = 0; j < ds.length; j++) ds[j].className = 'dot' + (j === idx ? ' on' : '');
+    count.textContent = (idx + 1) + ' / ' + total;
+  }
+
+  document.getElementById('prev').addEventListener('click', function () { go(idx - 1); });
+  document.getElementById('next').addEventListener('click', function () { go(idx + 1); });
+
+  var sx = null;
+  var vp = document.querySelector('.viewport');
+  vp.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+  vp.addEventListener('touchend', function (e) {
+    if (sx === null) return;
+    var dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
+    sx = null;
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') go(idx - 1);
+    if (e.key === 'ArrowRight') go(idx + 1);
+  });
+})();
+</script>
+</body>
+</html>
