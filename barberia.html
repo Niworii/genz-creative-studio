@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Barbería — Antes y después · GenZ Creative Studio</title>
+<meta name="description" content="Carrusel de marca de 3 posts para barbería con avatar de IA: la llegada, el servicio en la silla y el resultado frente al espejo.">
+<meta name="theme-color" content="#08080c">
+<link rel="canonical" href="https://genz-creative-studio.vercel.app/barberia.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2308080c'/%3E%3Ctext x='16' y='23' font-family='Arial,Helvetica,sans-serif' font-size='17' font-weight='bold' fill='%23c8ff00' text-anchor='middle'%3EGZ%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://genz-creative-studio.vercel.app/barberia.html">
+<meta property="og:title" content="Barbería — Antes y después · GenZ Creative Studio">
+<meta property="og:description" content="Carrusel de marca de 3 posts para barbería con avatar de IA: la llegada, el servicio en la silla y el resultado frente al espejo.">
+<meta property="og:image" content="https://genz-creative-studio.vercel.app/og-barberia.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=Inter:opsz,wght@14..32,300..600&display=swap">
+
+<style>
+/* reset base */
+html, body { margin: 0; }
+img, video { max-width: 100%; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+
+:root {
+  /* chrome de la página */
+  --page-bg: #0f0d0b;
+  --page-fg: #f5efe6;
+  --page-muted: #8c8176;
+  --page-card: #171412;
+  --page-line: rgba(245,239,230,0.1);
+
+  /* marca de la pieza — fija en ambos temas */
+  --amber: #d99b4e;
+  --cream: #f7f2ea;
+  --ink: #0b0908;
+
+  --display: 'Oswald', Impact, sans-serif;
+  --body: 'Inter', system-ui, sans-serif;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --page-bg: #f4f1ec;
+    --page-fg: #1a1613;
+    --page-muted: #6f655b;
+    --page-card: #ffffff;
+    --page-line: rgba(26,22,19,0.12);
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --page-bg: #f4f1ec;
+  --page-fg: #1a1613;
+  --page-muted: #6f655b;
+  --page-card: #ffffff;
+  --page-line: rgba(26,22,19,0.12);
+  color-scheme: light;
+}
+
+* { margin: 0; box-sizing: border-box; }
+img { max-width: 100%; display: block; }
+body {
+  background: var(--page-bg);
+  color: var(--page-fg);
+  font-family: var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── volver ── */
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 2rem;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--page-muted);
+  text-decoration: none;
+  border: 1px solid var(--page-line);
+  border-radius: 100px;
+  padding: 7px 16px;
+  transition: color .2s, border-color .2s;
+}
+.back:hover { color: var(--amber); border-color: var(--amber); }
+
+/* ── encabezado ── */
+.head { text-align: center; padding: 1.5rem 0; max-width: 440px; }
+.head .kicker {
+  font-family: var(--display);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 8px;
+}
+.head h1 {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.head p { font-size: 12.5px; color: var(--page-muted); margin-top: 7px; }
+
+/* ── carrusel ── */
+.wrap { width: 100%; max-width: 400px; }
+.viewport {
+  overflow: hidden;
+  border-radius: 4px;
+  aspect-ratio: 4/5;
+  box-shadow: 0 2px 10px rgba(0,0,0,.25), 0 18px 50px rgba(0,0,0,.35);
+}
+.track { display: flex; height: 100%; transition: transform .45s cubic-bezier(.4,0,.2,1); }
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+.slide > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(11,9,8,.55) 0%,
+    rgba(11,9,8,.10) 32%,
+    rgba(11,9,8,.55) 68%,
+    rgba(11,9,8,.92) 100%
+  );
+}
+.num {
+  position: absolute;
+  top: 7%;
+  left: 8%;
+  font-family: var(--display);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  color: var(--amber);
+  z-index: 2;
+}
+.wm {
+  position: absolute;
+  top: 7%;
+  right: 8%;
+  font-family: var(--display);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(247,242,234,.45);
+  z-index: 2;
+}
+.copy {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 8%;
+  z-index: 2;
+}
+.copy h2 {
+  font-family: var(--display);
+  font-size: clamp(1.35rem, 5.8vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-wrap: balance;
+  margin-bottom: .55rem;
+}
+.copy h2 .hl { color: var(--amber); }
+.copy p {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: rgba(247,242,234,.82);
+  max-width: 300px;
+}
+.rule { width: 28px; height: 2px; background: var(--amber); margin-bottom: .9rem; }
+
+.cta-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: .8rem;
+  font-family: var(--display);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--amber);
+  padding: 9px 18px;
+  border-radius: 3px;
+}
+
+/* ── controles ── */
+.ctrl { display: flex; align-items: center; gap: 14px; margin: 1.1rem 0 .35rem; }
+.nav {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid var(--page-line);
+  background: var(--page-card);
+  color: var(--page-fg);
+  font-size: 15px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav:hover { border-color: var(--amber); color: var(--amber); }
+.dots { display: flex; gap: 6px; }
+.dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--page-line); cursor: pointer;
+  transition: all .25s; border: none; padding: 0;
+}
+.dot.on { background: var(--amber); width: 20px; border-radius: 4px; }
+.count {
+  font-size: 11px; color: var(--page-muted);
+  font-variant-numeric: tabular-nums; margin-bottom: 3rem;
+}
+</style>
+</head>
+<body>
+<a class="back" href="https://genz-creative-studio.vercel.app/">← Volver al portafolio</a>
+
+<div class="head">
+  <div class="kicker">Demo · GenZ Creative Studio</div>
+  <h1>Barbería</h1>
+  <p>Carrusel de 3 posts · Instagram 1080 × 1350</p>
+</div>
+
+<div class="wrap">
+  <div class="viewport">
+    <div class="track" id="track">
+
+      <!-- 1 · LLEGADA -->
+      <div class="slide">
+        <img src="img/barb-1-llegada.webp" alt="Cliente llegando a la puerta de la barbería">
+        <div class="scrim"></div>
+        <span class="num">01</span>
+        <span class="wm">GenZ Creative</span>
+        <div class="copy">
+          <div class="rule"></div>
+          <h2>Entras como llegas…</h2>
+          <p>Bienvenido. Aquí te estábamos esperando.</p>
+        </div>
+      </div>
+
+      <!-- 2 · EN LA SILLA -->
+      <div class="slide">
+        <img src="img/barb-2-silla.webp" alt="Barbero cortando el cabello al cliente en la silla">
+        <div class="scrim"></div>
+        <span class="num">02</span>
+        <span class="wm">GenZ Creative</span>
+        <div class="copy">
+          <div class="rule"></div>
+          <h2>…te pones en manos de <span class="hl">profesionales</span></h2>
+          <p>Técnica, precisión y tiempo dedicado solo a ti.</p>
+        </div>
+      </div>
+
+      <!-- 3 · RESULTADO -->
+      <div class="slide">
+        <img src="img/barb-3-espejo.webp" alt="Cliente mirándose al espejo con el corte terminado">
+        <div class="scrim"></div>
+        <span class="num">03</span>
+        <span class="wm">GenZ Creative</span>
+        <div class="copy">
+          <div class="rule"></div>
+          <h2>Y sales siendo tu <span class="hl">mejor versión</span></h2>
+          <p>Barberos certificados · Corte y perfilado de barba a tu estilo</p>
+          <span class="cta-line">Reserva tu cita 💈</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="ctrl">
+    <button class="nav" id="prev" aria-label="Anterior">‹</button>
+    <div class="dots" id="dots"></div>
+    <button class="nav" id="next" aria-label="Siguiente">›</button>
+  </div>
+  <div class="count" id="count">1 / 3</div>
+</div>
+
+<script>
+(function () {
+  var track = document.getElementById('track');
+  var dotsC = document.getElementById('dots');
+  var count = document.getElementById('count');
+  var total = track.children.length;
+  var idx = 0;
+
+  for (var i = 0; i < total; i++) {
+    var b = document.createElement('button');
+    b.className = 'dot' + (i === 0 ? ' on' : '');
+    b.setAttribute('aria-label', 'Lámina ' + (i + 1));
+    b.dataset.i = i;
+    b.addEventListener('click', function (e) { go(+e.currentTarget.dataset.i); });
+    dotsC.appendChild(b);
+  }
+
+  function go(i) {
+    idx = Math.max(0, Math.min(total - 1, i));
+    track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    var ds = dotsC.querySelectorAll('.dot');
+    for (var j = 0; j < ds.length; j++) ds[j].className = 'dot' + (j === idx ? ' on' : '');
+    count.textContent = (idx + 1) + ' / ' + total;
+  }
+
+  document.getElementById('prev').addEventListener('click', function () { go(idx - 1); });
+  document.getElementById('next').addEventListener('click', function () { go(idx + 1); });
+
+  var sx = null;
+  var vp = document.querySelector('.viewport');
+  vp.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+  vp.addEventListener('touchend', function (e) {
+    if (sx === null) return;
+    var dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
+    sx = null;
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') go(idx - 1);
+    if (e.key === 'ArrowRight') go(idx + 1);
+  });
+})();
+</script>
+</body>
+</html>
