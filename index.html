@@ -8,6 +8,7 @@
 <meta name="theme-color" content="#08080c">
 <link rel="canonical" href="https://genz-creative-studio.vercel.app/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2308080c'/%3E%3Ctext x='16' y='23' font-family='Arial,Helvetica,sans-serif' font-size='17' font-weight='bold' fill='%23c8ff00' text-anchor='middle'%3EGZ%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="https://genz-creative-studio.vercel.app/logo-180.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://genz-creative-studio.vercel.app/">
 <meta property="og:title" content="GenZ Creative Studio — Contenido que convierte">
@@ -193,6 +194,23 @@ a { color: inherit; }
   z-index: 1;
   padding: 5rem 0 3.5rem;
   text-align: center;
+}
+.brand-badge {
+  width: 58px;
+  height: 58px;
+  border-radius: 15px;
+  background: var(--accent);
+  color: #08080c;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 27px;
+  letter-spacing: -2px;
+  text-indent: -2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.3rem;
+  box-shadow: 0 6px 24px var(--accent-glow);
 }
 .logo {
   font-family: var(--font-display);
@@ -932,6 +950,7 @@ section { position: relative; z-index: 1; }
 
   <!-- HERO -->
   <section class="hero">
+    <div class="brand-badge">GZ</div>
     <div class="logo">
       <span class="logo-line"></span>
       GenZ Creative Studio
