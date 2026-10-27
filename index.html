@@ -1,0 +1,1296 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="GenZ Creative Studio — contenido UGC con avatares IA, posts para redes y landing pages para clínicas estéticas, restaurantes, barberías y marcas de ropa. Caracas, Venezuela.">
+<meta name="theme-color" content="#08080c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2308080c'/%3E%3Ctext x='16' y='23' font-family='Arial,Helvetica,sans-serif' font-size='17' font-weight='bold' fill='%23c8ff00' text-anchor='middle'%3EGZ%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GenZ Creative Studio — Contenido que convierte">
+<meta property="og:description" content="GenZ Creative Studio — contenido UGC con avatares IA, posts para redes y landing pages para clínicas estéticas, restaurantes, barberías y marcas de ropa. Caracas, Venezuela.">
+<meta property="og:image" content="og-preview.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<title>GenZ Creative Studio</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700;800&display=swap">
+
+<style>
+/* reset base */
+html, body { margin: 0; }
+img, video { max-width: 100%; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+
+:root {
+  --bg: #08080c;
+  --bg-card: #111318;
+  --bg-elevated: #1a1d26;
+  --fg: #f0f0f5;
+  --fg-muted: #7a7f94;
+  --accent: #c8ff00;
+  --accent-dim: rgba(200, 255, 0, 0.08);
+  --accent-glow: rgba(200, 255, 0, 0.15);
+  --clinic: #00e5c3;
+  --restaurant: #ff9f43;
+  --barber: #ff6b6b;
+  --apparel: #a78bfa;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --font-display: 'Sora', system-ui, sans-serif;
+  --font-body: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --gradient-mesh: radial-gradient(ellipse 60% 50% at 20% 0%, rgba(200,255,0,0.06) 0%, transparent 70%),
+                   radial-gradient(ellipse 40% 60% at 80% 100%, rgba(0,229,195,0.04) 0%, transparent 70%);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f8f9fc;
+    --bg-card: #ffffff;
+    --bg-elevated: #eef0f6;
+    --fg: #111318;
+    --fg-muted: #6b7085;
+    --accent: #4a7a00;
+    --accent-dim: rgba(74, 122, 0, 0.06);
+    --accent-glow: rgba(74, 122, 0, 0.1);
+    --clinic: #00a88e;
+    --restaurant: #c47520;
+    --barber: #c44040;
+    --apparel: #6d4fc4;
+    --gradient-mesh: radial-gradient(ellipse 60% 50% at 20% 0%, rgba(74,122,0,0.04) 0%, transparent 70%),
+                     radial-gradient(ellipse 40% 60% at 80% 100%, rgba(0,168,142,0.03) 0%, transparent 70%);
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f8f9fc;
+  --bg-card: #ffffff;
+  --bg-elevated: #eef0f6;
+  --fg: #111318;
+  --fg-muted: #6b7085;
+  --accent: #4a7a00;
+  --accent-dim: rgba(74, 122, 0, 0.06);
+  --accent-glow: rgba(74, 122, 0, 0.1);
+  --clinic: #00a88e;
+  --restaurant: #c47520;
+  --barber: #c44040;
+  --apparel: #6d4fc4;
+  --gradient-mesh: radial-gradient(ellipse 60% 50% at 20% 0%, rgba(74,122,0,0.04) 0%, transparent 70%),
+                   radial-gradient(ellipse 40% 60% at 80% 100%, rgba(0,168,142,0.03) 0%, transparent 70%);
+  color-scheme: light;
+}
+
+* { margin: 0; box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+}
+h1, h2, h3, h4 { font-family: var(--font-display); text-wrap: balance; }
+a { color: inherit; }
+
+.page { max-width: 860px; margin: 0 auto; }
+
+/* ─── MESH BG ─── */
+.mesh-bg {
+  position: fixed;
+  inset: 0;
+  background: var(--gradient-mesh);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── TEXTURA DE GRANO ─── */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: .05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .grain { opacity: .035; }
+}
+:root[data-theme="light"] .grain { opacity: .035; }
+
+/* ─── RETÍCULA DE PUNTOS EN EL HERO ─── */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -6%; left: 0; right: 0;
+  height: 460px;
+  background-image: radial-gradient(circle, var(--accent) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: .16;
+  -webkit-mask-image: radial-gradient(ellipse 62% 70% at 50% 30%, #000 0%, transparent 76%);
+  mask-image: radial-gradient(ellipse 62% 70% at 50% 30%, #000 0%, transparent 76%);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero { overflow: hidden; }
+.hero > * { position: relative; z-index: 1; }
+
+/* ─── SELLO ─── */
+.stamp {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1.5px dashed rgba(200,255,0,0.4);
+  border-radius: 4px;
+  padding: 6px 14px;
+  margin-bottom: 1.4rem;
+  transform: rotate(-2.2deg);
+}
+
+/* ─── CINTA DIAGONAL ─── */
+.tape {
+  height: 22px;
+  margin: 0 0 3.5rem;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--accent) 0 12px,
+    var(--bg) 12px 24px
+  );
+  opacity: .8;
+  border-radius: 2px;
+  transform: rotate(-.5deg);
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── ACENTOS MONOESPACIADOS ─── */
+.sec-tag,
+.work-kind,
+.stat-lbl,
+.pill,
+.niche-badge,
+.marquee span { font-family: var(--font-mono); }
+.pill { font-weight: 400; letter-spacing: 0; font-size: 11px; }
+
+/* numeración automática de secciones */
+.page { counter-reset: sec; }
+.sec-head { counter-increment: sec; }
+.sec-tag::before {
+  content: "[" counter(sec, decimal-leading-zero) "] ";
+  opacity: .55;
+}
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  z-index: 1;
+  padding: 5rem 0 3.5rem;
+  text-align: center;
+}
+.logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.logo-line {
+  width: 32px;
+  height: 2px;
+  background: var(--accent);
+  opacity: 0.5;
+}
+.hero h1 {
+  font-size: clamp(2.2rem, 7vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.5px;
+}
+.hero h1 .highlight {
+  color: var(--accent);
+  position: relative;
+  display: inline-block;
+}
+.hero h1 .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  opacity: 0.4;
+}
+.hero-sub {
+  color: var(--fg-muted);
+  font-size: 1.08rem;
+  max-width: 540px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+.pills {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.pill {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 9px 20px;
+  border-radius: 100px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(200,255,0,0.12);
+  color: var(--fg);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ─── MARQUEE ─── */
+.marquee-wrap {
+  overflow: hidden;
+  padding: 1.5rem 0;
+  margin: 0 -16px;
+  position: relative;
+  z-index: 1;
+}
+.marquee {
+  display: flex;
+  gap: 3rem;
+  animation: marquee 20s linear infinite;
+  width: max-content;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee span {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  opacity: 0.5;
+  white-space: nowrap;
+}
+.marquee span::before {
+  content: "◆";
+  margin-right: 3rem;
+  color: var(--accent);
+  opacity: 0.6;
+}
+
+/* ─── STATS ─── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 2rem 0 4rem;
+  position: relative;
+  z-index: 1;
+}
+.stat-cell {
+  background: var(--bg-card);
+  padding: 2rem 1.2rem;
+  text-align: center;
+}
+.stat-val {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-lbl {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+/* ─── SECTION ─── */
+section { position: relative; z-index: 1; }
+.sec-head {
+  margin-bottom: 2rem;
+}
+.sec-tag {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.sec-head h2 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+.sec-head p {
+  color: var(--fg-muted);
+  max-width: 560px;
+}
+
+/* ─── NICHE CARDS ─── */
+.niches { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 5rem; }
+.niche {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--bg-elevated);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.niche:hover { border-color: rgba(200,255,0,0.15); }
+.niche-top {
+  padding: 1.5rem 1.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.niche-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.niche[data-n="clinic"] .niche-icon { background: rgba(0,229,195,0.12); }
+.niche[data-n="restaurant"] .niche-icon { background: rgba(255,159,67,0.12); }
+.niche[data-n="barber"] .niche-icon { background: rgba(255,107,107,0.12); }
+.niche[data-n="apparel"] .niche-icon { background: rgba(167,139,250,0.13); }
+
+.niche-top h3 { font-size: 1.05rem; font-weight: 700; }
+.niche-badge {
+  margin-left: auto;
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+.niche[data-n="clinic"] .niche-badge { color: var(--clinic); background: rgba(0,229,195,0.1); }
+.niche[data-n="restaurant"] .niche-badge { color: var(--restaurant); background: rgba(255,159,67,0.1); }
+.niche[data-n="barber"] .niche-badge { color: var(--barber); background: rgba(255,107,107,0.1); }
+.niche[data-n="apparel"] .niche-badge { color: var(--apparel); background: rgba(167,139,250,0.12); }
+
+.niche-desc {
+  padding: 0.8rem 1.5rem 0;
+  color: var(--fg-muted);
+  font-size: 14px;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 1.2rem 1.5rem 1.5rem;
+}
+@media (max-width: 600px) { .services-grid { grid-template-columns: 1fr; } }
+.svc {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  padding: 1.1rem;
+  min-width: 0;
+}
+.svc-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.svc-head span { font-size: 1.1rem; }
+.svc-head h4 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.svc ul { list-style: none; padding: 0; margin: 0; }
+.svc ul li {
+  font-size: 12.5px;
+  color: var(--fg-muted);
+  padding: 3px 0;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.svc ul li::before {
+  content: "→";
+  color: var(--accent);
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+/* ─── TRABAJOS ─── */
+.work-section { margin-bottom: 5rem; }
+.work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 680px) { .work-grid { grid-template-columns: 1fr; } }
+.work {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-elevated);
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  transition: border-color .2s, transform .15s;
+}
+.work:hover {
+  border-color: var(--accent);
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 var(--accent);
+}
+.work-thumb {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-elevated);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.work-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.work-body { padding: 1rem 1.1rem 1.2rem; flex: 1; display: flex; flex-direction: column; }
+.work-kind {
+  font-family: var(--font-display);
+  font-size: 9px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+}
+.work-body h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.work-body p { font-size: 12px; color: var(--fg-muted); line-height: 1.55; flex: 1; }
+.work-link {
+  font-family: var(--font-display);
+  font-size: 11px; font-weight: 600; color: var(--accent);
+  margin-top: 10px; display: inline-flex; align-items: center; gap: 5px;
+}
+
+/* tile for the streetwear landing */
+.tile-zen {
+  position: absolute; inset: 0;
+  background: #0a0a0a;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 2px;
+}
+.tile-zen .kanji { font-size: 2.1rem; color: rgba(255,255,255,.14); line-height: 1; }
+.tile-zen .mark {
+  font-family: var(--font-display);
+  font-size: 1.15rem; font-weight: 800; letter-spacing: 5px;
+  color: #fff; margin-left: 5px;
+}
+.tile-zen .sm { font-size: 8px; letter-spacing: 2.4px; text-transform: uppercase; color: rgba(255,255,255,.4); }
+
+/* ─── AVATARES ─── */
+.avatar-section { margin-bottom: 5rem; scroll-margin-top: 24px; }
+.avatar-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--bg-elevated);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+@media (max-width: 680px) { .avatar-showcase { grid-template-columns: 1fr; } }
+.av-video {
+  margin: 0;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: #000;
+  min-width: 0;
+}
+.av-video video {
+  width: 100%;
+  display: block;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+}
+.av-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.av-name {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  line-height: 1.1;
+}
+.av-role {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 5px;
+}
+.av-stills { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.av-stills figure {
+  margin: 0;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  min-width: 0;
+}
+.av-stills img { width: 100%; height: 100%; object-fit: cover; }
+.av-points { list-style: none; padding: 0; margin: auto 0 0; display: flex; flex-direction: column; gap: 8px; }
+.av-points li {
+  font-size: 12.5px;
+  color: var(--fg-muted);
+  line-height: 1.5;
+  display: flex;
+  gap: 9px;
+  align-items: baseline;
+}
+.av-points li::before { content: "✓"; color: var(--accent); font-weight: 700; font-size: 11px; flex-shrink: 0; }
+
+/* play badge sobre miniatura */
+.play-badge {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(8,8,12,.55);
+  border: 1.5px solid rgba(255,255,255,.85);
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 3px;
+  backdrop-filter: blur(3px);
+}
+
+/* empty slot */
+.work.slot { border-style: dashed; border-color: rgba(200,255,0,.22); }
+.work.slot:hover { transform: none; }
+.tile-slot {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  background: var(--accent-dim);
+}
+.tile-slot .play {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-size: 13px; padding-left: 3px;
+}
+.tile-slot .lb { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--fg-muted); }
+
+/* ─── PACKAGES ─── */
+.packages-section { margin-bottom: 5rem; }
+.pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+@media (max-width: 600px) { .pkg-grid { grid-template-columns: 1fr; } }
+
+/* ─── PILOTO ─── */
+.pilot {
+  position: relative;
+  background: var(--accent-dim);
+  border: 1.5px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.7rem 1.7rem 1.5rem;
+  margin-bottom: 12px;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.pilot-badge {
+  position: absolute;
+  top: -10px;
+  left: 1.6rem;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  background: var(--accent);
+  color: #08080c;
+  padding: 3px 11px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.pilot-left { flex: 1 1 240px; min-width: 0; }
+.pilot-left h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 5px; }
+.pilot-left p { font-size: 12.5px; color: var(--fg-muted); line-height: 1.65; }
+.pilot-note {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  margin-top: 9px;
+  line-height: 1.5;
+}
+.pilot-price { flex-shrink: 0; text-align: right; }
+.pilot-price .n {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.3rem;
+  line-height: 1;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.pilot-price .s {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-top: 4px;
+}
+@media (max-width: 520px) {
+  .pilot { flex-direction: column; align-items: flex-start; }
+  .pilot-price { text-align: left; }
+}
+
+/* ─── CUPOS ─── */
+.capacity {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 0 4px;
+  font-size: 12.5px;
+  color: var(--fg-muted);
+  line-height: 1.6;
+}
+.capacity strong { color: var(--fg); font-weight: 600; }
+.dot-live {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  margin-top: 7px;
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+.pkg {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-elevated);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.pkg.pop {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 8px 32px var(--accent-glow);
+  position: relative;
+}
+.pkg.pop::before {
+  content: "⚡ MÁS ELEGIDO";
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  background: var(--accent);
+  color: #08080c;
+  padding: 4px 14px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.pkg h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+.pkg .price {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.7rem;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 2px;
+}
+.pkg .pnote { font-size: 12px; color: var(--fg-muted); margin-bottom: 1rem; }
+.pkg ul { list-style: none; padding: 0; margin: 0; flex: 1; }
+.pkg ul li {
+  font-size: 13px;
+  padding: 5px 0;
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+.pkg ul li::before {
+  content: "✓";
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+/* ─── PROCESS ─── */
+.process-section { margin-bottom: 5rem; }
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+@media (max-width: 600px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+.step-card {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-elevated);
+  border-radius: var(--radius);
+  padding: 1.3rem;
+}
+.step-n {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.8rem;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.4px var(--accent);
+  margin-bottom: 10px;
+  font-variant-numeric: tabular-nums;
+  opacity: .85;
+}
+.step-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+.step-card p { font-size: 12.5px; color: var(--fg-muted); line-height: 1.5; }
+
+/* ─── CTA ─── */
+.cta {
+  text-align: center;
+  padding: 3.5rem 1.5rem;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--bg-elevated);
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.cta::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+.cta > p {
+  color: var(--fg-muted);
+  margin-bottom: 2rem;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+.cta-btns {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  position: relative;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 14px 32px;
+  border-radius: 100px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.15s, box-shadow 0.2s;
+}
+.btn:active { transform: scale(0.97); }
+.btn-main {
+  background: var(--accent);
+  color: #08080c;
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+.btn-main:hover { box-shadow: 0 6px 28px rgba(200,255,0,0.25); }
+.btn-ghost {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--bg-elevated);
+}
+.phone-display {
+  margin-top: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--fg);
+  letter-spacing: 1px;
+  position: relative;
+  user-select: all;
+}
+.phone-display small {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--fg-muted);
+  letter-spacing: 0;
+  margin-top: 4px;
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  text-align: center;
+  padding: 2rem 0 3rem;
+  font-size: 12px;
+  color: var(--fg-muted);
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.5px;
+}
+.footer strong { color: var(--accent); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="mesh-bg"></div>
+<div class="grain"></div>
+
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="logo">
+      <span class="logo-line"></span>
+      GenZ Creative Studio
+      <span class="logo-line"></span>
+    </div>
+    <div class="stamp">EST. 2026 · Caracas, VE</div>
+    <h1>Tu negocio merece<br>contenido que <span class="highlight">convierte</span></h1>
+    <p class="hero-sub">Producimos videos UGC con avatares IA, contenido para redes y landing pages que transforman visitantes en clientes reales.</p>
+    <div class="pills">
+      <span class="pill">📹 UGC con Avatar IA</span>
+      <span class="pill">📱 Contenido para Redes</span>
+      <span class="pill">🌐 Landing Pages</span>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee">
+      <span>Clínicas Estéticas</span>
+      <span>Restaurantes</span>
+      <span>Marcas de Ropa</span>
+      <span>Barberías</span>
+      <span>Cafeterías</span>
+      <span>Streetwear</span>
+      <span>Salones de Belleza</span>
+      <span>Odontología</span>
+      <span>Clínicas Estéticas</span>
+      <span>Restaurantes</span>
+      <span>Marcas de Ropa</span>
+      <span>Barberías</span>
+      <span>Cafeterías</span>
+      <span>Streetwear</span>
+      <span>Salones de Belleza</span>
+      <span>Odontología</span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-grid">
+    <div class="stat-cell">
+      <div class="stat-val">3</div>
+      <div class="stat-lbl">Herramientas IA</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">48h</div>
+      <div class="stat-lbl">Entrega express</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">70%</div>
+      <div class="stat-lbl">Menos costo</div>
+    </div>
+  </div>
+
+  <!-- NICHOS -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-tag">Especialización</div>
+      <h2>Nichos que dominamos</h2>
+      <p>Nos enfocamos en negocios con alta demanda y poca presencia digital. Cada pieza está pensada para tu industria.</p>
+    </div>
+
+    <div class="niches">
+
+      <div class="niche" data-n="clinic">
+        <div class="niche-top">
+          <div class="niche-icon">🏥</div>
+          <h3>Clínicas Estéticas y Odontológicas</h3>
+          <span class="niche-badge">Alta demanda</span>
+        </div>
+        <p class="niche-desc">Tus pacientes buscan resultados visibles antes de agendar. Les mostramos lo que pueden lograr con contenido que genera confianza.</p>
+        <div class="services-grid">
+          <div class="svc">
+            <div class="svc-head"><span>📹</span><h4>UGC Avatar IA</h4></div>
+            <ul>
+              <li>Testimonial de paciente</li>
+              <li>"Top 3 tratamientos"</li>
+              <li>Antes y después narrado</li>
+            </ul>
+          </div>
+          <div class="svc">
+            <div class="svc-head"><span>📱</span><h4>Contenido Redes</h4></div>
+            <ul>
+              <li>Carrusel de tratamientos</li>
+              <li>Reels tips dentales</li>
+              <li>Stories de FAQ</li>
+            </ul>
+          </div>
+          <div class="svc">
+            <div class="svc-head"><span>🌐</span><h4>Landing Page</h4></div>
+            <ul>
+              <li>Servicios y precios</li>
+              <li>Botón de WhatsApp</li>
+              <li>Galería de resultados</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="niche" data-n="restaurant">
+        <div class="niche-top">
+          <div class="niche-icon">🍽️</div>
+          <h3>Restaurantes y Cafeterías</h3>
+          <span class="niche-badge">Gran volumen</span>
+        </div>
+        <p class="niche-desc">El 80% de tus clientes deciden dónde comer viendo redes. Hacemos que tu plato estrella sea irresistible en pantalla.</p>
+        <div class="services-grid">
+          <div class="svc">
+            <div class="svc-head"><span>📹</span><h4>UGC Avatar IA</h4></div>
+            <ul>
+              <li>"El mejor brunch de la ciudad"</li>
+              <li>Review estilo foodie</li>
+              <li>Unboxing de delivery</li>
+            </ul>
+          </div>
+          <div class="svc">
+            <div class="svc-head"><span>📱</span><h4>Contenido Redes</h4></div>
+            <ul>
+              <li>Reels del plato estrella</li>
+              <li>Carrusel menú semanal</li>
+              <li>Stories de promos</li>
+            </ul>
+          </div>
+          <div class="svc">
+            <div class="svc-head"><span>🌐</span><h4>Landing Page</h4></div>
+            <ul>
+              <li>Menú digital con fotos</li>
+              <li>Mapa y horarios</li>
+              <li>Reservas por WhatsApp</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="niche" data-n="barber">
+        <div class="niche-top">
+          <div class="niche-icon">💈</div>
+          <h3>Barberías y Salones de Belleza</h3>
+          <span class="niche-badge">En crecimiento</span>
+        </div>
+        <p class="niche-desc">Tu próximo cliente busca un corte en Instagram ahora. Mostramos tu trabajo con el estilo que merece.</p>
+        <div class="services-grid">
+          <div class="svc">
+            <div class="svc-head"><span>📹</span><h4>UGC Avatar IA</h4></div>
+            <ul>
+              <li>"Mi transformación"</li>
+              <li>Review de experiencia</li>
+              <li>Tendencias de cortes 2026</li>
+            </ul>
+          </div>
+          <div class="svc">
+            <div class="svc-head"><span>📱</span><h4>Contenido Redes</h4></div>
+            <ul>
+              <li>Reels antes/después</li>
+              <li>Carrusel de estilos</li>
+              <li>Stories de agenda</li>
+            </ul>
+          </div>
+          <div class="svc">
+            <div class="svc-head"><span>🌐</span><h4>Landing Page</h4></div>
+            <ul>
+              <li>Portafolio de cortes</li>
+              <li>Precios y servicios</li>
+              <li>Cita por WhatsApp</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="niche" data-n="apparel">
+        <div class="niche-top">
+          <div class="niche-icon">👕</div>
+          <h3>Marcas de Ropa</h3>
+          <span class="niche-badge">Experiencia propia</span>
+        </div>
+        <p class="niche-desc">Producimos el contenido de cada lanzamiento: la pieza, el look y el drop. Trabajamos por colección y no por mes — el paquete se arma según lo que pida cada lanzamiento.</p>
+        <div class="services-grid">
+          <div class="svc">
+            <div class="svc-head"><span>📹</span><h4>UGC Avatar IA</h4></div>
+            <ul>
+              <li>Try-on de la pieza</li>
+              <li>"Cómo lo combino"</li>
+              <li>Reacción al drop</li>
+            </ul>
+          </div>
+          <div class="svc">
+            <div class="svc-head"><span>📱</span><h4>Contenido Redes</h4></div>
+            <ul>
+              <li>Fotos de producto</li>
+              <li>Carrusel del lookbook</li>
+              <li>Teaser del lanzamiento</li>
+            </ul>
+          </div>
+          <div class="svc">
+            <div class="svc-head"><span>🌐</span><h4>Landing Page</h4></div>
+            <ul>
+              <li>Catálogo con tallas</li>
+              <li>Página del drop</li>
+              <li>Pedido por WhatsApp</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TRABAJOS -->
+  <section class="work-section">
+    <div class="sec-head">
+      <div class="sec-tag">Portafolio</div>
+      <h2>Trabajos</h2>
+      <p>Piezas reales, hechas con el mismo proceso que aplicaríamos a tu negocio.</p>
+    </div>
+    <div class="work-grid">
+
+      <a class="work" href="https://claude.ai/artifact/XiaV3PJPidNzLUQYtxBGRr" target="_blank" rel="noopener">
+        <div class="work-thumb">
+          <img src="img/pausa.webp" alt="Café de especialidad preparado en V60 junto a una taza con latte art">
+        </div>
+        <div class="work-body">
+          <div class="work-kind">Carrusel de marca</div>
+          <h3>PAUSA — Café &amp; Co-work</h3>
+          <p>Carrusel de 4 posts para una cafetería-brunch: concepto, inspiración y experiencia. Identidad visual, dirección de arte y copy completos.</p>
+          <span class="work-link">Ver carrusel →</span>
+        </div>
+      </a>
+
+      <a class="work" href="https://modoz3n.vercel.app" target="_blank" rel="noopener">
+        <div class="work-thumb">
+          <div class="tile-zen">
+            <div class="kanji">禅</div>
+            <div class="mark">ZËN</div>
+            <div class="sm">Bienvenido al templo</div>
+          </div>
+        </div>
+        <div class="work-body">
+          <div class="work-kind">Landing page</div>
+          <h3>ZËN — Streetwear</h3>
+          <p>Landing con catálogo, guía de tallas y checkout por WhatsApp para una marca venezolana. Proyecto propio, en vivo.</p>
+          <span class="work-link">Visitar sitio →</span>
+        </div>
+      </a>
+
+      <a class="work" href="#avatares">
+        <div class="work-thumb">
+          <img src="media/valeria-poster.webp" alt="Valeria, avatar de IA, en una clínica estética">
+          <span class="play-badge">▶</span>
+        </div>
+        <div class="work-body">
+          <div class="work-kind">UGC con avatar IA</div>
+          <h3>Valeria — Cosmética &amp; Spa</h3>
+          <p>Avatar de marca para clínica estética: video de bienvenida y piezas de producto, con el mismo rostro en toda la comunicación.</p>
+          <span class="work-link">Ver el avatar →</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- AVATARES IA -->
+  <section class="avatar-section" id="avatares">
+    <div class="sec-head">
+      <div class="sec-tag">Avatares IA</div>
+      <h2>Un rostro propio para tu marca</h2>
+      <p>Creamos un avatar consistente que presenta tus servicios, muestra tus productos y le habla a tu cliente. Sin sesión de fotos, sin contratar modelo y sin coordinar agendas.</p>
+    </div>
+
+    <div class="avatar-showcase">
+      <figure class="av-video">
+        <video
+          src="media/valeria.mp4"
+          poster="media/valeria-poster.webp"
+          controls
+          playsinline
+          preload="metadata"></video>
+      </figure>
+      <div class="av-side">
+        <div>
+          <div class="av-name">Valeria</div>
+          <div class="av-role">Avatar para clínicas estéticas y spa</div>
+        </div>
+        <div class="av-stills">
+          <figure><img src="media/val-producto.webp" alt="Valeria presentando un producto cosmético" loading="lazy"></figure>
+          <figure><img src="media/val-camilla.webp" alt="Valeria preparando una camilla de tratamiento" loading="lazy"></figure>
+        </div>
+        <ul class="av-points">
+          <li>El mismo rostro en todas las piezas, mes tras mes</li>
+          <li>Se adapta a tu espacio, tu uniforme y tus productos</li>
+          <li>Guion y voz escritos para tu negocio</li>
+          <li>De la idea al video publicado en 48 horas</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAQUETES -->
+  <section class="packages-section">
+    <div class="sec-head">
+      <div class="sec-tag">Inversión</div>
+      <h2>Planes</h2>
+      <p>Empieza con un piloto de dos semanas. Si te convence, lo abonamos a tu primer mes.</p>
+    </div>
+
+    <div class="pilot">
+      <span class="pilot-badge">EMPIEZA AQUÍ</span>
+      <div class="pilot-left">
+        <h3>Piloto de 2 semanas</h3>
+        <p>1 video UGC con avatar IA, 4 posts y un diagnóstico de tus redes. Sin contrato ni permanencia: lo ves funcionando antes de comprometerte.</p>
+        <div class="pilot-note">↳ Si continúas, los $120 se descuentan de tu primer mes.</div>
+      </div>
+      <div class="pilot-price">
+        <div class="n">$120</div>
+        <div class="s">pago único</div>
+      </div>
+    </div>
+
+    <div class="pkg-grid">
+      <div class="pkg">
+        <h3>Esencial</h3>
+        <div class="price">$250</div>
+        <div class="pnote">al mes</div>
+        <ul>
+          <li>2 videos UGC con avatar IA</li>
+          <li>8 posts para redes</li>
+          <li>Calendario de contenido mensual</li>
+          <li>Revisiones ilimitadas</li>
+          <li>Soporte por WhatsApp</li>
+        </ul>
+      </div>
+      <div class="pkg pop">
+        <h3>Completo</h3>
+        <div class="price">$450</div>
+        <div class="pnote">al mes</div>
+        <ul>
+          <li>4 videos UGC con avatar IA</li>
+          <li>16 posts + stories</li>
+          <li>Landing page incluida y mantenida</li>
+          <li>Estrategia y calendario mensual</li>
+          <li>Reporte de resultados</li>
+          <li>Soporte prioritario</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="capacity">
+      <span class="dot-live"></span>
+      <span>Trabajamos con <strong>4 negocios a la vez</strong>. Es el límite para que cada uno reciba estrategia propia y no una plantilla con el logo cambiado. Pago en dos partes disponible.</span>
+    </div>
+    <div class="capacity">
+      <span class="dot-live" style="background:var(--apparel); box-shadow:0 0 0 3px rgba(167,139,250,.12)"></span>
+      <span><strong>¿Marca de ropa?</strong> Ahí cotizamos por drop, no por mes: nos dices qué necesita el lanzamiento y armamos el paquete a esa medida.</span>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="process-section">
+    <div class="sec-head">
+      <div class="sec-tag">Metodología</div>
+      <h2>Cómo trabajamos</h2>
+      <p>De la idea al contenido publicado en menos de una semana.</p>
+    </div>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-n">01</div>
+        <h4>Diagnóstico</h4>
+        <p>Analizamos tus redes y definimos la estrategia.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-n">02</div>
+        <h4>Propuesta</h4>
+        <p>Contenido, estilo visual y calendario del mes.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-n">03</div>
+        <h4>Producción</h4>
+        <p>Creamos todo con IA. Tú apruebas cada pieza.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-n">04</div>
+        <h4>Publicación</h4>
+        <p>Publicamos y medimos resultados semanalmente.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="tape"></div>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>¿Listo para llenar tu agenda?</h2>
+    <p>Escríbenos hoy y recibe un diagnóstico gratuito de tus redes + una muestra de contenido para tu negocio.</p>
+    <div class="cta-btns">
+      <a class="btn btn-main" href="https://wa.me/584242608826?text=Hola%20GenZ%20Creative%20Studio%2C%20quiero%20info%20sobre%20sus%20servicios" target="_blank" rel="noopener">💬 WhatsApp directo</a>
+      <a class="btn btn-ghost" href="https://www.instagram.com/genz_creativestudio/" target="_blank" rel="noopener">📸 @genz_creativestudio</a>
+    </div>
+    <div class="phone-display">
+      +58 424 260 8826
+      <small>WhatsApp · respondemos en menos de 1 hora</small>
+      <small>Instagram · @genz_creativestudio</small>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <strong>GenZ Creative Studio</strong> · Contenido con Inteligencia Artificial · Caracas, Venezuela · 2026
+  </footer>
+
+</div>
+</body>
+</html>
