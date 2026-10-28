@@ -527,6 +527,110 @@ section { position: relative; z-index: 1; }
 }
 .tile-zen .sm { font-size: 8px; letter-spacing: 2.4px; text-transform: uppercase; color: rgba(255,255,255,.4); }
 
+/* ─── LÍNEA DE OTROS NICHOS ─── */
+.also {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: .6px;
+  color: var(--fg-muted);
+  margin-top: 1.1rem;
+}
+
+/* ─── ETIQUETAS DE PORTAFOLIO ─── */
+.work-meta { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 6px; }
+.work-meta .work-kind { margin-bottom: 0; }
+.wtag {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.wtag.demo { color: var(--fg-muted); background: var(--bg-elevated); }
+.wtag.propio { color: var(--apparel); background: rgba(167,139,250,.13); }
+.wtag.cliente { color: var(--accent); background: var(--accent-dim); }
+
+/* ─── PIEZA DESTACADA CON CARRUSEL ─── */
+.feature {
+  margin-top: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--bg-elevated);
+  border-radius: var(--radius);
+  padding: 1.1rem 0 1rem 1.1rem;
+}
+.feature-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding-right: 1.1rem;
+  margin-bottom: 1rem;
+}
+.feature-head h3 { font-size: 15px; font-weight: 700; margin-top: 3px; }
+.feature-link {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.feature-link:hover { text-decoration: underline; }
+.rail {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0 1.1rem 12px 0;
+  -webkit-overflow-scrolling: touch;
+}
+.rail figure {
+  margin: 0;
+  flex: 0 0 auto;
+  width: min(264px, 62vw);
+  aspect-ratio: 4 / 5;
+  border-radius: 10px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  background: var(--bg-elevated);
+}
+.rail img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rail-hint {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+/* ─── DETALLE DE MANTENIMIENTO ─── */
+.maint {
+  margin-top: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--bg-elevated);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+}
+.maint h4 {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 9px;
+}
+.maint ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 6px 18px; }
+@media (max-width: 600px) { .maint ul { grid-template-columns: 1fr; } }
+.maint li { font-size: 12.5px; color: var(--fg-muted); line-height: 1.5; display: flex; gap: 8px; align-items: baseline; }
+.maint li::before { content: "·"; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+.maint .out { margin-top: 10px; font-size: 12px; color: var(--fg-muted); line-height: 1.5; }
+.maint .out b { color: var(--fg); font-weight: 600; }
+
 /* ─── AVATARES ─── */
 .avatar-section { margin-bottom: 5rem; scroll-margin-top: 24px; }
 .avatar-showcase {
@@ -957,13 +1061,14 @@ section { position: relative; z-index: 1; }
       <span class="logo-line"></span>
     </div>
     <div class="stamp">EST. 2026 · Caracas, VE</div>
-    <h1>Tu negocio merece<br>contenido que <span class="highlight">convierte</span></h1>
-    <p class="hero-sub">Producimos videos UGC con avatares IA, contenido para redes y landing pages que transforman visitantes en clientes reales.</p>
+    <h1>Videos y contenido para que tu clínica<br><span class="highlight">reciba más consultas</span></h1>
+    <p class="hero-sub">Contenido visual para clínicas estéticas y spas en Caracas: piezas que explican tus tratamientos y llevan la conversación a tu WhatsApp.</p>
     <div class="pills">
       <span class="pill">📹 UGC con Avatar IA</span>
       <span class="pill">📱 Contenido para Redes</span>
       <span class="pill">🌐 Landing Pages</span>
     </div>
+    <div class="also">También trabajamos con restaurantes · barberías · marcas de ropa</div>
   </section>
 
   <!-- MARQUEE -->
@@ -1020,14 +1125,14 @@ section { position: relative; z-index: 1; }
           <h3>Clínicas Estéticas y Odontológicas</h3>
           <span class="niche-badge">Alta demanda</span>
         </div>
-        <p class="niche-desc">Tus pacientes buscan resultados visibles antes de agendar. Les mostramos lo que pueden lograr con contenido que genera confianza.</p>
+        <p class="niche-desc">Tus pacientes quieren entender el tratamiento antes de agendar. Producimos contenido informativo con presentadores de IA, siempre identificados como tales, sin testimonios ni promesas de resultados.</p>
         <div class="services-grid">
           <div class="svc">
             <div class="svc-head"><span>📹</span><h4>UGC Avatar IA</h4></div>
             <ul>
-              <li>Testimonial de paciente</li>
-              <li>"Top 3 tratamientos"</li>
-              <li>Antes y después narrado</li>
+              <li>Presentadora explicando el tratamiento</li>
+              <li>"Qué esperar en tu primera cita"</li>
+              <li>Respuestas a dudas frecuentes</li>
             </ul>
           </div>
           <div class="svc">
@@ -1061,7 +1166,7 @@ section { position: relative; z-index: 1; }
             <div class="svc-head"><span>📹</span><h4>UGC Avatar IA</h4></div>
             <ul>
               <li>"El mejor brunch de la ciudad"</li>
-              <li>Review estilo foodie</li>
+              <li>Recorrido por el menú</li>
               <li>Unboxing de delivery</li>
             </ul>
           </div>
@@ -1095,8 +1200,8 @@ section { position: relative; z-index: 1; }
           <div class="svc">
             <div class="svc-head"><span>📹</span><h4>UGC Avatar IA</h4></div>
             <ul>
-              <li>"Mi transformación"</li>
-              <li>Review de experiencia</li>
+              <li>Presentación de servicios</li>
+              <li>Recorrido por el local</li>
               <li>Tendencias de cortes 2026</li>
             </ul>
           </div>
@@ -1132,7 +1237,7 @@ section { position: relative; z-index: 1; }
             <ul>
               <li>Try-on de la pieza</li>
               <li>"Cómo lo combino"</li>
-              <li>Reacción al drop</li>
+              <li>Presentación del drop</li>
             </ul>
           </div>
           <div class="svc">
@@ -1162,7 +1267,7 @@ section { position: relative; z-index: 1; }
     <div class="sec-head">
       <div class="sec-tag">Portafolio</div>
       <h2>Trabajos</h2>
-      <p>Piezas reales, hechas con el mismo proceso que aplicaríamos a tu negocio.</p>
+      <p>Cada pieza indica qué es: un trabajo para cliente, un proyecto propio o un demo conceptual hecho para mostrar el proceso.</p>
     </div>
     <div class="work-grid">
 
@@ -1171,7 +1276,7 @@ section { position: relative; z-index: 1; }
           <img src="img/pausa.webp" alt="Café de especialidad preparado en V60 junto a una taza con latte art">
         </div>
         <div class="work-body">
-          <div class="work-kind">Carrusel de marca</div>
+          <div class="work-meta"><span class="work-kind">Carrusel de marca</span><span class="wtag demo">Demo conceptual</span></div>
           <h3>PAUSA — Café &amp; Co-work</h3>
           <p>Carrusel de 4 posts para una cafetería-brunch: concepto, inspiración y experiencia. Identidad visual, dirección de arte y copy completos.</p>
           <span class="work-link">Ver carrusel →</span>
@@ -1187,7 +1292,7 @@ section { position: relative; z-index: 1; }
           </div>
         </div>
         <div class="work-body">
-          <div class="work-kind">Landing page</div>
+          <div class="work-meta"><span class="work-kind">Landing page</span><span class="wtag propio">Proyecto propio</span></div>
           <h3>ZËN — Streetwear</h3>
           <p>Landing con catálogo, guía de tallas y checkout por WhatsApp para una marca venezolana. Proyecto propio, en vivo.</p>
           <span class="work-link">Visitar sitio →</span>
@@ -1200,7 +1305,7 @@ section { position: relative; z-index: 1; }
           <span class="play-badge">▶</span>
         </div>
         <div class="work-body">
-          <div class="work-kind">UGC con avatar IA</div>
+          <div class="work-meta"><span class="work-kind">UGC con avatar IA</span><span class="wtag demo">Demo conceptual</span></div>
           <h3>Valeria — Cosmética &amp; Spa</h3>
           <p>Avatar de marca para clínica estética: video de bienvenida y piezas de producto, con el mismo rostro en toda la comunicación.</p>
           <span class="work-link">Ver el avatar →</span>
@@ -1212,13 +1317,30 @@ section { position: relative; z-index: 1; }
           <img src="img/barb-1-llegada.webp" alt="Cliente llegando a la puerta de una barbería">
         </div>
         <div class="work-body">
-          <div class="work-kind">Carrusel de marca</div>
+          <div class="work-meta"><span class="work-kind">Carrusel de marca</span><span class="wtag demo">Demo conceptual</span></div>
           <h3>Barbería — Antes y después</h3>
           <p>Carrusel de 3 posts que cuenta la experiencia completa: la llegada, el servicio en la silla y el resultado frente al espejo.</p>
           <span class="work-link">Ver carrusel →</span>
         </div>
       </a>
 
+    </div>
+
+    <div class="feature">
+      <div class="feature-head">
+        <div>
+          <div class="work-meta"><span class="work-kind">Carrusel de marca</span><span class="wtag demo">Demo conceptual</span></div>
+          <h3>PAUSA — Café &amp; Co-work</h3>
+        </div>
+        <a class="feature-link" href="https://genz-creative-studio.vercel.app/pausa.html">Ver la pieza completa →</a>
+      </div>
+      <div class="rail" tabindex="0" role="group" aria-label="Carrusel de PAUSA, cuatro láminas">
+        <figure><img src="img/pausa-01.webp" alt="Portada del carrusel: PAUSA, café de especialidad y co-work" loading="lazy"></figure>
+        <figure><img src="img/pausa-02.webp" alt="Lámina del concepto: tu oficina, tu refugio y tu ritual" loading="lazy"></figure>
+        <figure><img src="img/pausa-03.webp" alt="Lámina de la inspiración: Melbourne y los kissaten de Tokio" loading="lazy"></figure>
+        <figure><img src="img/pausa-04.webp" alt="Lámina de la experiencia: café, mesas para quedarse y vinilos" loading="lazy"></figure>
+      </div>
+      <div class="rail-hint">Desliza para ver las 4 láminas →</div>
     </div>
   </section>
 
@@ -1339,7 +1461,7 @@ section { position: relative; z-index: 1; }
           <li>2 videos UGC con avatar IA</li>
           <li>8 posts para redes</li>
           <li>Calendario de contenido mensual</li>
-          <li>Revisiones ilimitadas</li>
+          <li>Dos rondas de cambios por pieza</li>
           <li>Soporte por WhatsApp</li>
         </ul>
       </div>
@@ -1351,11 +1473,25 @@ section { position: relative; z-index: 1; }
           <li>4 videos UGC con avatar IA</li>
           <li>16 posts + stories</li>
           <li>Landing page incluida y mantenida</li>
+          <li>Tres rondas de cambios por pieza</li>
           <li>Estrategia y calendario mensual</li>
           <li>Reporte de resultados</li>
           <li>Soporte prioritario</li>
         </ul>
       </div>
+    </div>
+
+    <div class="maint">
+      <h4>Qué incluye el mantenimiento de la landing</h4>
+      <ul>
+        <li>Alojamiento y dominio .vercel.app</li>
+        <li>Hasta 2 actualizaciones de contenido al mes</li>
+        <li>Cambios de precios, horarios y fotos</li>
+        <li>Carga de las piezas nuevas del mes</li>
+        <li>Revisión de que los enlaces y el botón de WhatsApp funcionen</li>
+        <li>Copia de seguridad del sitio</li>
+      </ul>
+      <p class="out"><b>No incluye:</b> rediseño, secciones nuevas, tienda en línea ni dominio propio. Eso se cotiza aparte.</p>
     </div>
 
     <div class="capacity">
@@ -1406,11 +1542,11 @@ section { position: relative; z-index: 1; }
     <h2>¿Listo para llenar tu agenda?</h2>
     <p>Escríbenos hoy y recibe un diagnóstico gratuito de tus redes + una muestra de contenido para tu negocio.</p>
     <div class="cta-btns">
-      <a class="btn btn-main" href="https://wa.me/584242608826?text=Hola%20GenZ%20Creative%20Studio%2C%20quiero%20info%20sobre%20sus%20servicios" target="_blank" rel="noopener">💬 WhatsApp directo</a>
+      <a class="btn btn-main" href="https://wa.me/584244943216?text=Hola%2C%20vi%20el%20portafolio%20de%20GenZ%20Creative%20Studio.%20Me%20gustar%C3%ADa%20solicitar%20un%20diagn%C3%B3stico%20para%20mi%20negocio." target="_blank" rel="noopener">💬 WhatsApp directo</a>
       <a class="btn btn-ghost" href="https://www.instagram.com/genz_creativestudio/" target="_blank" rel="noopener">📸 @genz_creativestudio</a>
     </div>
     <div class="phone-display">
-      +58 424 260 8826
+      +58 424 494 3216
       <small>WhatsApp · respondemos en menos de 1 hora</small>
       <small>Instagram · @genz_creativestudio</small>
     </div>
